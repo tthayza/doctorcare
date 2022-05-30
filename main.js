@@ -14,31 +14,22 @@ function onScroll() {
 function activateMenuAtCurrentSection(section) {
   const targetLine = scrollY + innerHeight / 2
 
-  // verificar se a seção passou da linha alvo
-  // quais dados vou precisar?
-
+  // verificar se a seção passou da linha
   const sectionTop = section.offsetTop
-
   const sectionHeight = section.offsetHeight
-
-  const sectionTopReachOrPassedTargetLine = targetLine >= sectionTop
+  const sectionTopReachOrPassedTargetline = targetLine >= sectionTop
 
   // verificar se a base está abaixo da linha alvo
-  //quais dados vou precisar?
 
   const sectionEndsAt = sectionTop + sectionHeight
-
-  const sectionEndPassedTargetLine = sectionEndsAt <= targetLine
-
-  console.log('O fundo da seção passou da linha?', sectionEndPassedTargetLine)
+  const sectionEndPassedTargetline = sectionEndsAt <= targetLine
 
   // limites da seção
   const sectionBoundaries =
-    sectionTopReachOrPassedTargetLine && !sectionEndPassedTargetLine
+    sectionTopReachOrPassedTargetline && !sectionEndPassedTargetline
 
   const sectionId = section.getAttribute('id')
-  const menuElement = document.querySelector(`.menu a
-  [href*=${sectionId}]`)
+  const menuElement = document.querySelector(`.menu a[href*=${sectionId}]`)
 
   menuElement.classList.remove('active')
   if (sectionBoundaries) {
@@ -48,23 +39,24 @@ function activateMenuAtCurrentSection(section) {
 
 function showNavOnScroll() {
   if (scrollY > 0) {
-    navigation.classList.add('scroll')
+    document.getElementById('navigation').classList.add('scroll')
   } else {
-    navigation.classList.remove('scroll')
+    document.getElementById('navigation').classList.remove('scroll')
   }
 }
 
 function showBackToTopButtonOnScroll() {
   if (scrollY > 550) {
-    BackToTopButton.classList.add('show')
+    document.getElementById('backToTopButton').classList.add('show')
   } else {
-    BackToTopButton.classList.remove('show')
+    document.getElementById('backToTopButton').classList.remove('show')
   }
 }
 
 function openMenu() {
   document.body.classList.add('menu-expanded')
 }
+
 function closeMenu() {
   document.body.classList.remove('menu-expanded')
 }
@@ -73,12 +65,13 @@ ScrollReveal({
   origin: 'top',
   distance: '30px',
   duration: 700
-}).reveal(`#home,
-#home img,
-#home.stats,
-#services,
-#services header,
-#services .card,
-#about,
-#about header,
-#about.content`)
+}).reveal(`
+  #home,
+  #home img,
+  #home .stats,
+  #services,
+  #services header,
+  #services .card,
+  #about,
+  #about header,
+  #about .content`)
